@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	
+	<bean id="salutaUno" class="ch.ti.csi.corso.HelloImpl">
+		<constructor-arg ref="luigi" />
+	</bean>
+	
+	<bean id="salutaTutti" class="ch.ti.csi.corso.HelloImpl_v3">
+		<constructor-arg>
+			<set>
+				<ref bean="andrea"/>
+				<ref bean="luigi"/>
+				<ref bean="andrea"/>
+				<ref bean="andrea"/>
+				<ref bean="andrea"/>
+			</set>
+		</constructor-arg>
+	</bean>	
+	
+	<bean id="salutaMappa" class="ch.ti.csi.corso.HelloImpl_v4">
+		<constructor-arg>
+			<map>
+				<entry key="x" value-ref="andrea"></entry>
+				<entry key="y" value-ref="luigi"></entry>
+			</map>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="salutaAW" class="ch.ti.csi.corso.HelloImpl_AutoWiring"
+	       autowire="byName">
+	</bean>
+
+	<bean id="andrea" class="ch.ti.csi.corso.Persona">
+		<constructor-arg value="Andrea"/>
+		<constructor-arg value="Colleoni"/>
+	</bean>
+	
+	<bean id="luigi" class="ch.ti.csi.corso.Persona">
+		<constructor-arg value="Luigi"></constructor-arg>
+		<constructor-arg value="Rossi"></constructor-arg>	
+	</bean>
+	
+	<bean id="client" class="ch.ti.csi.corso.ClientApp"
+		autowire="constructor">
+	</bean>
+</beans>
