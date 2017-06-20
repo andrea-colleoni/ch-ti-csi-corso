@@ -21,7 +21,7 @@ public class EsercizioTest {
 	Client c;
 
 	@Test
-	public void testGo() {
+	public void testGo() throws Exception {
 		c.go();
 		assertTrue(true);
 	}
