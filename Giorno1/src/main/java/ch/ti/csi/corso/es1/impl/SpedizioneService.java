@@ -1,22 +1,17 @@
 package ch.ti.csi.corso.es1.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import ch.ti.csi.corso.es1.Messaggistica;
+import ch.ti.csi.corso.es1.Servizio;
+import ch.ti.csi.corso.es1.aop.Notifiable;
 
 @Service
-public class SpedizioneService extends AbstractServizio {
+public class SpedizioneService implements Servizio {
 
-	@Autowired
-	@Qualifier("istantanea")
-	Messaggistica sms;
-	
+	@Notifiable("Notifica di eseguita spedizione")
 	public void esegui() {
 		String messaggio = "Eseguita la spedizione";
 		System.out.println(messaggio);
-		sms.send(messaggio);
 	}
 
 }

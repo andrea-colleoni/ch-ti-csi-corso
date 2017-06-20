@@ -11,6 +11,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class LoggingAspect {
 	
+	/*
+	 * POINTCUTS
+	 */
+	
 	// type designator (non supporta modifier, indica un tipo da intercettare
 	@Pointcut("within(ch.ti.csi.corso.es1.impl.*Service)")
 	public void serviziPointcut() {}
@@ -23,16 +27,28 @@ public class LoggingAspect {
 	@Pointcut("execution(* ch.ti.csi.corso.es1.impl.*.es*(..))")
 	public void metodiEsPointcut() {}
 	
+	// tutti i metodi del package che iniziano con send*
+	@Pointcut("execution(* ch.ti.csi.corso.es1.impl.*.send(..))")
+	public void metodiSendPointcut() {}	
+	
 	// tutti i metodi annotati con una annotazione personalizzata
 	@Pointcut("execution(@ch.ti.csi.corso.es1.aop.AOPAnnotation * *(..))")
 	public void annotationPointcut() {}
 	
-	@Before("annotationPointcut()")
+	// metodi di un tipo non presente nel container
+	@Pointcut("within(ch.ti.csi.corso.outofcontainer.ServizioOut)")
+	public void outOfContainerPointcut() {}	
+	
+	
+	/*
+	 * ADVICES
+	 */
+	@Before("outOfContainerPointcut()")
 	public void logBefore(JoinPoint joinPoint) {
 		System.out.println("prima di entrare nel metodo => " + joinPoint.getSignature().getName());
 	}
 	
-	@After("execution(* ch.ti.csi.corso.es1.impl.*.send(..))")
+	@After("outOfContainerPointcut()")
 	public void logAfter(JoinPoint joinPoint) {
 		System.out.println("finito di eseguire il metodo => " + joinPoint.getSignature().getName());
 	}
