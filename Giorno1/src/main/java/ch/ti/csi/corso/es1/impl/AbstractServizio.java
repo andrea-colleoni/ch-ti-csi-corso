@@ -12,11 +12,15 @@ public abstract class AbstractServizio implements Servizio {
 	@Autowired
 	List<Messaggistica> messaggistica;
 
-	public abstract void esegui();
+	public abstract void esegui() throws Exception;
 
 	void sendMessages(String messaggio) {
 		for(Messaggistica m : messaggistica)
 			m.send(messaggio);	
+	}
+	
+	void errore() throws Exception {
+		//throw new Exception("Errore provocato intenzionalmente");
 	}
 	
 }

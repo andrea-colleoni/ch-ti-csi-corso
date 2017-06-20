@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
-import org.springframework.core.env.AbstractEnvironment;
 
 import ch.ti.csi.corso.es1.Servizio;
 
@@ -14,7 +13,7 @@ public class Client {
 	@Autowired
 	List<Servizio> servizi;
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		//1. impostazione e refresh context
 //		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
 //		ctx.getEnvironment().setActiveProfiles("prod");
@@ -31,8 +30,9 @@ public class Client {
 		//3. altre modalità (web.xml, WebAppInitializer)
 	}
 	
-	public void go() {
+	public void go() throws Exception {
 		for(Servizio s : servizi)
-			s.esegui();
+				s.esegui();
+
 	}
 }
