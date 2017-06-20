@@ -1,30 +1,32 @@
-package ch.ti.csi.corso;
+package ch.ti.csi.corso.configjava;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import ch.ti.csi.corso.beans.Servizio1;
-import ch.ti.csi.corso.beans.Servizio2;
 
 public class ClientApp {  
 	
 	HelloInterface hi;
 	
-	public ClientApp(HelloImpl_AutoWiring hi) {
+	@Autowired
+	Servizio1 servizio1;
+	
+	public ClientApp(HelloInterface hi) {
 		super();
 		this.hi = hi;
 	}
 
 	public static void main(String[] args) {
-		AbstractApplicationContext ctx = new ClassPathXmlApplicationContext("/beans.xml");
+		AbstractApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
 		ClientApp c = (ClientApp)ctx.getBean("client");
-		Servizio1 s1 = (Servizio1)ctx.getBean("servizio1");
-		s1.a();
 		c.go();
 		ctx.close();
 	}
 	
 	void go() {
+		servizio1.a();
 		hi.hello();
 	}
 
