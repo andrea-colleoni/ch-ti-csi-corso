@@ -1,33 +1,31 @@
 package ch.ti.csi.corso.jpa;
 
-import java.util.Date;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.AbstractApplicationContext;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.PersistenceException;
+import ch.ti.csi.corso.config.Config;
 
+@Component
 public class ClientApp {
-
+	
+	@Autowired
+	Servizio s;
+	
 	public static void main(String[] args) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("corsi");
-		EntityManager em = emf.createEntityManager();
-
-		Studente s = new Studente();
-		s.setNome("Mario");
-		s.setCognome("Rossi");
-		s.setDataNascita(new Date());
-		s.setMatricola((int) Math.random() * 1000);
-		try {
-			em.getTransaction().begin();
-			em.persist(s);
-			em.getTransaction().commit();
-		} catch (PersistenceException ex) {
-
-		} finally {
-			em.close();
-			emf.close();
-		}
+		AbstractApplicationContext ctx = new AnnotationConfigApplicationContext(Config.class);
+		ClientApp c = ctx.getBean(ClientApp.class);
+		c.go();
+		ctx.close();
 	}
+	
+	@Transactional
+	void go() {
+		s.go();
+	}
+
+
 
 }

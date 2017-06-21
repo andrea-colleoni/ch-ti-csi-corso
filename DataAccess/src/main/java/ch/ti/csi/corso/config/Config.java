@@ -24,7 +24,7 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
-@EnableTransactionManagement
+@EnableTransactionManagement(order=0)
 @ComponentScan(basePackageClasses={ch.ti.csi.corso.jpa.Studente.class} )
 public class Config {
 

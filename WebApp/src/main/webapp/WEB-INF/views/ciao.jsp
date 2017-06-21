@@ -8,5 +8,6 @@
 </head>
 <body>
 <h1>JSP!!</h1>
+<h2>${mario.nome} - ${mario.cognome}</h2>
 </body>
 </html>
