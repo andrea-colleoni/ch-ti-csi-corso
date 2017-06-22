@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping(path="/user")
+@RequestMapping(path={"/user", "/api"})
 //@Secured({"ROLE_USER", "ROLE_ADMIN"})
 public class PrimoController {
 
