@@ -17,7 +17,7 @@ import org.springframework.batch.core.JobParametersBuilder;
 import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
  * Generates some execution.
@@ -127,7 +127,7 @@ public class GeneratesJobMetaData {
 	}
 	
 	private static void truncate(ApplicationContext ctx) {
-		SimpleJdbcTemplate tpl = new SimpleJdbcTemplate(ctx.getBean(DataSource.class));
+		JdbcTemplate tpl = new JdbcTemplate(ctx.getBean(DataSource.class));
 		tpl.update("delete from BATCH_STEP_EXECUTION_CONTEXT");
 		tpl.update("delete from BATCH_JOB_EXECUTION_CONTEXT");
 		tpl.update("delete from BATCH_STEP_EXECUTION");
