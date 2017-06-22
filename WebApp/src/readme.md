@@ -1,3 +1,7 @@
+Link collection Postman per test WS:
+https://www.getpostman.com/collections/1aaf6541e76485e8cdf2
+
+
 Esempio Oauth2
 
 Url:
