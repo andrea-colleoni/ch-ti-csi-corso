@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping(path="/admin")
+//@Secured("ROLE_ADMIN")
 public class AdminController {
 
 	@RequestMapping(path="/verifica")
 	//@PreAuthorize("hasRole('ADMIN')")
-	//@Secured("ROLE_ADMIN")
 	public @ResponseBody String admin() {
 		return "ok";
 	}

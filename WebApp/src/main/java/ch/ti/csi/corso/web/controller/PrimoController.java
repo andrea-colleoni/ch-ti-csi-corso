@@ -1,5 +1,6 @@
 package ch.ti.csi.corso.web.controller;
 
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping(path="/user")
+//@Secured({"ROLE_USER", "ROLE_ADMIN"})
 public class PrimoController {
 
 	@RequestMapping(path="/saluta", method=RequestMethod.GET)

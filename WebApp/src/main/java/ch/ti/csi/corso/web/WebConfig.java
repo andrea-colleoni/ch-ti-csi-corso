@@ -1,8 +1,11 @@
 package ch.ti.csi.corso.web;
 
+import javax.sql.DataSource;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -18,8 +21,18 @@ public class WebConfig extends WebMvcConfigurerAdapter  {
 
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		registry.addResourceHandler("/**")
+		registry.addResourceHandler("/resources/**")
                         .addResourceLocations("/static/");
+	}	
+	
+	@Bean
+	public DataSource jdbcDataSource() {
+		DriverManagerDataSource ds = new DriverManagerDataSource();
+		ds.setDriverClassName("org.postgresql.Driver");
+		ds.setUrl("jdbc:postgresql://dev.sdi.ti.ch:15432/corso_spring");
+		ds.setUsername("postgres");
+		ds.setPassword("postgres");
+		return ds;
 	}	
 	
 	@Bean
