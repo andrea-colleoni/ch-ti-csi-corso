@@ -10,9 +10,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
+@RequestMapping(path="/user")
 public class PrimoController {
 
-	@RequestMapping(path="saluta", method=RequestMethod.GET)
+	@RequestMapping(path="/saluta", method=RequestMethod.GET)
 	public String ciao() {
 		return "ciao";
 	}
